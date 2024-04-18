@@ -35,7 +35,9 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # Environment Variables
-.env*
+.env
+.env.production
+.env.development
 
 # Bun
 bun.lockb
