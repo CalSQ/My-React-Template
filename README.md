@@ -56,3 +56,5 @@ Changes that can be made to current setup;
 - Change development `api -> .env.development` and production `.env` environment variables
 - Adjust `docker-compose` and `docker-compose-production` to your liking
 - Change `LICENCE` if needed, by default it is **MIT**
+- Change deployment env variables in `.env` for **deploy.sh**\
+- <span style="color:#aa0000">Remove `.example` from env files.</span>
