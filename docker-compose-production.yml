@@ -1,0 +1,42 @@
+networks:
+  app-network:
+    driver: bridge
+services:
+  api:
+    build: ./api
+    restart: always
+    ports:
+      - 6001:6001
+    env_file:
+      - .env
+    networks:
+      - app-network
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:4.0-xenial
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/data/db
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/credentials:/credentials
+      - ./client:/www/bot
+    networks:
+      - app-network
+    depends_on:
+      - api
+volumes:
+  data:
+  client-files:
